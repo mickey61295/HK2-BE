@@ -5,7 +5,7 @@ export const auth = (req, res, next) => {
 		const token = req.header('x-auth-token')
 		jwt.verify(token, process.env.SECRET)
 		next()
-	} catch (e) {
-		res.status(401).send({ Message: e })
+	} catch (err) {
+		res.status(401).send({ Message: err })
 	}
 }
