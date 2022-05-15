@@ -99,9 +99,6 @@ router.put('/addmovie', adminauth, async (req, res) => {
 	}
 })
 
-router.get('/gettheatres', adminauth, async (req, res) => {
-	res.send(await client.db('bms').collection('theatres').find())
-})
 
 router.delete('/deletetheatre/:id', adminauth, async (req, res) => {
 	const id = ObjectId(req.params.id)

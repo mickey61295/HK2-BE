@@ -37,4 +37,9 @@ router.post('/createbooking', auth, async (req, res) => {
 		)
 	res.send('Booking successful')
 })
+
+router.get('/gettheatres', async (req, res) => {
+	res.send(await client.db('bms').collection('theatres').find())
+})
+
 export const bookingsRouter = router
