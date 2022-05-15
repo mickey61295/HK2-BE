@@ -5,18 +5,16 @@ import { client } from '../index.js'
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-	res.send(await client.db('bms').collection('movies').find(req.query))
+	res.send(await client.db('bms').collection('theatres').findOne())
 })
 
 router.get('/:id', async (req, res) => {
 	res.send(
 		await client
 			.db('bms')
-			.collection('movies')
+			.collection('theatres')
 			.findOne({ _id: ObjectId(req.params.id) })
 	)
 })
 
-
-
-export const moviesRouter = router
+export const theatreRouter = router
