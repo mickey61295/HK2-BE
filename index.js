@@ -5,6 +5,7 @@ import cors from 'cors'
 import { usersRouter } from './routes/users.js'
 import { adminRouter } from './routes/admin.js'
 import { bookingsRouter } from './routes/bookings.js'
+import { moviesRouter } from './routes/movies.js'
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.get('/', (req, res) => {
 app.use('/users', usersRouter)
 app.use('/admin', adminRouter)
 app.use('/bookings', bookingsRouter)
+app.use('/movies', moviesRouter)
 
 app.listen(PORT, () => {
 	console.log(`Server started on port ${PORT}`)
