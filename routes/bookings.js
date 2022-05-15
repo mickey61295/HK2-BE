@@ -33,7 +33,12 @@ router.post('/createbooking', auth, async (req, res) => {
 		.collection('theatres')
 		.updateOne(
 			{ _id: ObjectId(movieId) },
-			{ $push: { bookings: booking.insertedId, seatsBooked: seats } }
+			{
+				$push: {
+					bookings: booking.insertedId,
+					seatsBooked: { showTime: seats },
+				},
+			}
 		)
 	res.send('Booking successful')
 })
