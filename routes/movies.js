@@ -5,7 +5,7 @@ import { client } from '../index.js'
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-	res.send(await client.db('bms').collection('movies').find(req.query))
+	res.send(await client.db('bms').collection('movies').find({}))
 })
 
 router.get('/:id', async (req, res) => {
@@ -16,7 +16,5 @@ router.get('/:id', async (req, res) => {
 			.findOne({ _id: ObjectId(req.params.id) })
 	)
 })
-
-
 
 export const moviesRouter = router

@@ -73,13 +73,7 @@ router.put('/updatetheatre/:id', adminauth, async (req, res) => {
 })
 
 router.put('/addmovie', adminauth, async (req, res) => {
-	const {
-		movieName,
-		movieDescription,
-		moviePoster,
-		movieTrailer,
-		movieTheatre,
-	} = req.body
+	const { name, poster, rating, summary, trailer } = req.body
 	const movie = await client
 		.db('bms')
 		.collection('movies')
@@ -89,16 +83,15 @@ router.put('/addmovie', adminauth, async (req, res) => {
 	} else {
 		res.send(
 			await client.db('bms').collection('movies').insertOne({
-				movieName: movieName,
-				movieDescription: movieDescription,
-				moviePoster: moviePoster,
-				movieTrailer: movieTrailer,
-				movieTheatre: movieTheatre,
+				movieName: name,
+				movieDescription: summary,
+				moviePoster: poster,
+				movieTrailer: trailer,
+				movieRating: rating,
 			})
 		)
 	}
 })
-
 
 router.delete('/deletetheatre/:id', adminauth, async (req, res) => {
 	const id = ObjectId(req.params.id)

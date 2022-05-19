@@ -4,6 +4,7 @@ import { client } from '../index.js'
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
+import { adminauth } from '../middleware/adminauth.js'
 
 dotenv.config()
 
@@ -114,6 +115,10 @@ router.post('/setnewpassword', async (req, res) => {
 	} else {
 		res.status(400).send('User does not exist')
 	}
+})
+
+router.get('/', adminauth, async (req, res) => {
+	res.send(await client.db('bms').collection('users').find({}).toArray())
 })
 
 export const usersRouter = router
